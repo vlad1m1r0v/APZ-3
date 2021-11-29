@@ -1,5 +1,7 @@
 package service
 
+import "github.com/vlad1m1r0v/APZ-3/server/pkg/repository"
+
 type Machine interface {
 
 }
@@ -12,6 +14,6 @@ type Service struct {
 
 }
 
-func NewService() *Service {
+func NewService(repos *repository.Repository) *Service {
 	return &Service{}
 }

@@ -18,12 +18,12 @@ func (h *Handler) InitRoutes() *gin.Engine {
 
 	machines := router.Group("/machines")
 	{
-		machines.GET("/")
+		machines.GET("/", h.getAllMachines)
 	}
 
 	disks := router.Group("/disks")
 	{
-		disks.PUT("/:id")
+		disks.PUT("/:id", h.connectToMachine)
 	}
 
 	return router
