@@ -16,12 +16,12 @@ func NewHandler(services *service.Service) *Handler {
 func (h *Handler) InitRoutes() *gin.Engine {
 	router := gin.New()
 
-	machines := router.Group("/machines")
+	machines := router.Group("machines")
 	{
 		machines.GET("/", h.getAllMachines)
 	}
 
-	disks := router.Group("/disks")
+	disks := router.Group("disks")
 	{
 		disks.PUT("/:id", h.connectToMachine)
 	}

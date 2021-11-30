@@ -2,19 +2,23 @@ package repository
 
 import "database/sql"
 
-type Machine interface {
+type MachineRepository interface {
+	GetAll()([]Machine, error)
 
 }
 
-type Disk interface {
-
+type DiskRepository interface {
+	ConnectToMachine(id, machineId int) error
 }
 
 type Repository struct {
-	Machine
-	Disk
+	MachineRepository
+	DiskRepository
 }
 
 func NewRepository(db *sql.DB) *Repository {
-	return &Repository{}
+	return &Repository{
+		MachineRepository: newMachinePostgres(db),
+		DiskRepository: newDiskPostgres(db),
+	}
 }
