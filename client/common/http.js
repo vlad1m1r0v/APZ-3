@@ -9,29 +9,19 @@ class requests {
 		return axios({
 			method: "get",
 			url: `${this.baseUrl}${path}`
-		});
-	}
-
-	post(path, data) {
-		return axios({
-			method: "post",
-			url: `${this.baseUrl}${path}`,
-			data: data
-		});
+		})
+			.then(res => res.data)
+			.catch(err => err.response);
 	}
 
 	put(path, data) {
-		return fetch(`${this.baseUrl}${path}`, {
+		return axios({
 			method: "put",
-			data: data
-		});
-	}
-
-	delete(path) {
-		return fetch({
-			method: "delete",
-			url: `${this.baseUrl}${path}`
-		});
+			url: `${this.baseUrl}${path}`,
+			data
+		})
+			.then(res => res.data)
+			.catch(err => err.response);
 	}
 }
 
