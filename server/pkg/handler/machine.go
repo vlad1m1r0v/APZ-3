@@ -7,6 +7,10 @@ import (
 )
 
 func(h *Handler) getAllMachines(c * gin.Context) {
-	machines, _ := h.services.MachineService.GetAllMachines()
+	machines, err := h.services.MachineService.GetAllMachines()
+	if err != nil {
+		c.String(http.StatusInternalServerError, "bad request: %s", err.Error())
+		return
+	}
 	c.JSON(http.StatusOK, machines)
 }
